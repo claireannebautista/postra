@@ -43,7 +43,7 @@ The route calls the Gemini REST API:
 
 `POST https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent`
 
-The default model is `gemini-3.8-flash`. `GEMINI_MODEL` can override it. The key is sent in the `x-goog-api-key` header and is read from `GEMINI_API_KEY` inside the server module. It is not prefixed with `NEXT_PUBLIC_`.
+The code fallback is `gemini-2.5-flash`. `GEMINI_MODEL` in the server environment overrides that fallback. The example environment file selects `gemini-3.5-flash-lite`. The key is sent in the `x-goog-api-key` header and is read from `GEMINI_API_KEY` inside the server module. It is not prefixed with `NEXT_PUBLIC_`.
 
 The request asks for JSON with `responseMimeType: application/json`. The parser still checks the payload, because a schema request can come back short or duplicated. A failed parse triggers one stricter retry, then a 502 with a generic message. The model error is logged on the server and is not shown in the browser.
 

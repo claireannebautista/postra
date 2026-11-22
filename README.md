@@ -4,6 +4,10 @@ Your AI Marketing Sidekick for Filipino micro, small, and medium businesses. Des
 
 Postra does not create accounts, save posts, or publish for you.
 
+## Live app
+
+Try Postra at [postra-pink.vercel.app](https://postra-pink.vercel.app/).
+
 ## Setup
 
 Use Node.js 24 LTS for the same runtime as GitHub Actions. Newer Node versions can run the app locally.
@@ -13,7 +17,7 @@ npm install
 cp .env.example .env.local
 ```
 
-Put your Gemini API key in `.env.local`:
+Add a Gemini API key to `.env.local`:
 
 ```bash
 GEMINI_API_KEY=your_key_here
@@ -31,7 +35,7 @@ Open [http://localhost:3000](http://localhost:3000).
 ## How to use Postra
 
 1. Enter your business or offering name.
-2. Select whether you're promoting a product, service, or event.
+2. Select whether you are promoting a product, service, or event.
 3. Describe your offering and target audience.
 4. Choose Facebook, Instagram, or TikTok.
 5. Select your content goal, brand tone, and preferred language.
@@ -45,12 +49,12 @@ Open [http://localhost:3000](http://localhost:3000).
 - `npm run lint` runs ESLint
 - `npm run build` creates a production build
 
-## Deploying later
+## CI and deployment
 
-The GitHub Actions workflow in `.github/workflows/ci.yml` installs dependencies, lints, tests, and builds on Node.js 24 LTS.
+The GitHub Actions workflow in `.github/workflows/ci.yml` runs on pushes and pull requests. It installs dependencies, runs ESLint, runs the Vitest suite, and creates a production build.
 
-Vercel can host this as a Next.js project. Add `GEMINI_API_KEY` and `GEMINI_MODEL` in the project environment settings for Production and Preview. Set `GEMINI_MODEL` to `gemini-3.5-flash-lite`.
+The live app is deployed on Vercel. To deploy your own copy, import the repository into Vercel and add `GEMINI_API_KEY` and `GEMINI_MODEL` as server-side environment variables for the required environments. `GEMINI_MODEL` can be set to a supported Gemini model; if unset, the app uses the default defined in `lib/generate-caption.ts`.
 
-Keep your actual API key out of git. `.env.local` is ignored, and `.env.example` should only contain placeholder values or variable names.
+Keep your actual API key out of Git. `.env.local` is ignored, and `.env.example` should contain only placeholder values or variable names. The key is read by the server and is not sent to the browser.
 
 See `spec.md` for the product requirements and `architecture.md` for how the page, route, and Gemini call fit together.
