@@ -33,7 +33,7 @@ export async function POST(request: Request) {
     const generation = await generateCaption(result.value, { fresh });
     return Response.json(generation);
   } catch (error) {
-    console.error("Caption generation failed", error);
+    console.error("Caption generation failed", error instanceof Error ? error.name : "UnknownError");
     return Response.json({ error: failureMessage }, { status: 502 });
   }
 }
