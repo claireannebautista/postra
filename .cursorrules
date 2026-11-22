@@ -1,0 +1,12 @@
+# Postra
+
+You are working on Postra, a Next.js caption helper for Filipino MSMEs.
+
+- Keep the MVP to one page and POST /api/generate.
+- Do not add authentication, a database, payments, or automatic posting.
+- Read GEMINI_API_KEY only on the server. Never use a NEXT_PUBLIC_ prefix for it.
+- Change choices and validation in lib/brief.ts, and keep the form and the route on the same validateBrief function.
+- A generation is one caption, exactly five hashtags, and one suggestion.
+- Run npm test after changing lib/. CI uses Node.js 24 LTS.
+- Read node_modules/next/dist/docs/ before changing App Router behavior. This Next.js version may differ from older training data.
+- Read CLAUDE.md, spec.md, and architecture.md before expanding scope.

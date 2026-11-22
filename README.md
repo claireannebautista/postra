@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Postra
 
-## Getting Started
+Your AI Marketing Sidekick for Filipino micro, small, and medium businesses. Describe a product, service, or event and get one social caption, five hashtags, and a creative suggestion for Facebook, Instagram, or TikTok.
 
-First, run the development server:
+Postra does not create accounts, save posts, or publish for you.
+
+## Setup
+
+Use Node.js 24 LTS for the same runtime as GitHub Actions. Newer Node versions can run the app locally.
+
+```bash
+npm install
+cp .env.example .env.local
+```
+
+Put your Gemini API key in `.env.local`:
+
+```bash
+GEMINI_API_KEY=your_key_here
+GEMINI_MODEL=gemini-3.5-flash-lite
+```
+
+Start the application:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## How to use Postra
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Enter your business or offering name.
+2. Select whether you're promoting a product, service, or event.
+3. Describe your offering and target audience.
+4. Choose Facebook, Instagram, or TikTok.
+5. Select your content goal, brand tone, and preferred language.
+6. Click **Generate Caption** to receive one caption, five hashtags, and a creative suggestion.
+7. Use **Copy** to copy the caption and hashtags, or **Regenerate** to request another version.
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
+- `npm run dev` starts the local app
+- `npm test` runs the unit tests
+- `npm run lint` runs ESLint
+- `npm run build` creates a production build
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploying later
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The GitHub Actions workflow in `.github/workflows/ci.yml` installs dependencies, lints, tests, and builds on Node.js 24 LTS.
 
-## Deploy on Vercel
+Vercel can host this as a Next.js project. Add `GEMINI_API_KEY` and `GEMINI_MODEL` in the project environment settings for Production and Preview. Set `GEMINI_MODEL` to `gemini-3.5-flash-lite`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Keep your actual API key out of git. `.env.local` is ignored, and `.env.example` should only contain placeholder values or variable names.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See `spec.md` for the product requirements and `architecture.md` for how the page, route, and Gemini call fit together.
